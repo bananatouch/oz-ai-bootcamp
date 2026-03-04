@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# environment
+.env
+
+# model files
+models/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
