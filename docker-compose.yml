@@ -1,0 +1,21 @@
+services:
+  api:
+    # docker image 생성
+    build: .
+    # 컨테이너가 사용할 포트
+    ports:
+      # 80(외부) 포트로 들어오는 트래픽을 api 컨테이너의 8000(내부) 포트로 전달
+      - "8080:8000"
+    depends_on:
+      # 반드시 db 컨테이너가 먼저 실행되어야 api 컨테이너가 실행됨 
+      - db
+  db:
+    # 공식 MySQL 이미지 사용 (https://hub.docker.com/)
+    image: mysql:8.0
+    environment:
+        # MYSQL 실행하는 명령어, 환경 변수 설정 (MySQL 루트 비밀번호, 데이터베이스 이름, 사용자 이름, 사용자 비밀번호)
+        MYSQL_ROOT_PASSWORD: 1234
+        # MYSQL 내 Defult Database 이름 설정 부분
+        MYSQL_DATABASE: oz
+    ports:
+      - "33061:3306"
